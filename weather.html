@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEATHER DETAILS</title>
+    <style>
+        .container{
+            text-align: center;
+            margin: 0 auto;
+        }
+        #inputBtn{
+            width:60%;
+            height:50px;
+            border: 1px solid balck;
+            font-size:48px;
+        }
+        #searchBtn{
+            width: 20%;
+            height:50px;
+            margin:10px;
+            font-size:24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WEATHER DETAILS</h1>
+        <input type="text" id="inputBtn" placeholder="Enter city name"/>
+        <br/>
+        <input type="button" value="Search" id="searchBtn" onClick="searchResults()"/>
+       <p id="results">temperature : </p>
+    </div>
+
+    <script>
+   function  searchResults() {
+    let inputBtn = document.getElementById('inputBtn').value;
+   let results = document.getElementById('results');
+    let apikey= '1b70f88f704f324da932861f5913579d';
+     if(inputBtn == "")
+       alert("please enter some location")
+    else{
+       var url = "https://api.openweathermap.org/data/2.5/weather?q="+inputBtn+"&appid="+apikey;
+        fetch(url)
+        .then(res => res.json())
+        .then(data => results.innerHTML = "Temperature : " + data.main.temp);
+      
+    }
+         
+        }        
+    </script>
+</body>
+</html>
